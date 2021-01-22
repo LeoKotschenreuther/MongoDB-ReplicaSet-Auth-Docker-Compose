@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db01:
+    build: .
+    volumes:
+      - datadb01:/data/db
+      - ./etc/mongod.conf:/etc/mongod.conf
+    ports:
+      - "30001:30001"
+    command: ["mongod", "--auth", "--config", "/etc/mongod.conf", "--port", "30001"]
+    container_name: db01
+
+  db02:
+    build: .
+    volumes:
+      - datadb02:/data/db
+      - ./etc/mongod.conf:/etc/mongod.conf
+    ports:
+      - "30002:30002"
+    command: ["mongod", "--auth", "--config", "/etc/mongod.conf", "--port", "30002"]
+    container_name: db02
+
+  db03:
+    build: .
+    volumes:
+      - datadb03:/data/db
+      - ./etc/mongod.conf:/etc/mongod.conf
+    ports:
+      - "30003:30003"
+    command: ["mongod", "--auth", "--config", "/etc/mongod.conf", "--port", "30003"]
+    container_name: db03
+
+volumes:
+  datadb01:
+  datadb02:
+  datadb03:
